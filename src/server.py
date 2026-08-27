@@ -123,8 +123,13 @@ def calcular():
 
 def run_server(port=None):
     port_to_use = port if port else PORT
-    print(f"Iniciando Servidor Flask na porta {port_to_use}...")
-    app.run(host='0.0.0.0', port=port_to_use, debug=True)
+    # Flask's debug mode enables the interactive Werkzeug debugger, which
+    # lets anyone who can reach an unhandled-exception page run arbitrary
+    # code — fine for local dev, never for a publicly reachable deploy.
+    # Defaults off; opt in locally with FLASK_DEBUG=1.
+    debug = os.getenv('FLASK_DEBUG', '0').lower() in ('1', 'true', 't')
+    print(f"Iniciando Servidor Flask na porta {port_to_use} (debug={debug})...")
+    app.run(host='0.0.0.0', port=port_to_use, debug=debug)
 
 if __name__ == '__main__':
     run_server()
