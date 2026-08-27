@@ -1,0 +1,17 @@
+# Render Blueprint — see DEPLOY.md for the full walkthrough.
+#
+# No database, no object storage: everything this app needs (the graph
+# datasets in data/, the pre-generated visualizations in out/) is
+# already committed to the repo, so there's nothing extra to provision.
+#
+# https://render.com/docs/blueprint-spec
+services:
+  - name: trabalho-grafos
+    type: web
+    runtime: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn --bind 0.0.0.0:$PORT src.server:app"
+    envVars:
+      - key: FLASK_DEBUG
+        value: "0"

@@ -1,14 +1,18 @@
-<img width="906" height="511" alt="image" src="https://github.com/user-attachments/assets/92398267-c411-4d40-8531-827bc62a5655" /># Teoria dos Grafos - Projeto Final
+# Teoria dos Grafos - Projeto Final
+
+<img width="906" height="511" alt="Grafo interativo dos bairros do Recife, com origem/destino e algoritmo selecionáveis" src="https://github.com/user-attachments/assets/92398267-c411-4d40-8531-827bc62a5655" />
 
 Este projeto implementa uma biblioteca de manipulação de grafos em Python, aplicada a dois cenários distintos:
 1.  **Análise de Bairros de Recife**: Modelagem da malha urbana para análise de conectividade e rotas.
 2.  **Malha Aérea dos EUA**: Análise de rotas de voos e performance de algoritmos em grafos de maior escala.
 
+Além da biblioteca e da CLI, o projeto inclui um **dashboard web interativo** (Flask + [vis-network](https://visjs.github.io/vis-network/)) pra explorar os grafos e rodar os algoritmos ao vivo, sem linha de comando — veja [Dashboard Web](#dashboard-web-interativo) abaixo.
+
 ## Instalação
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/raf7525/trabalho-grafos
+git clone https://github.com/Vinicius-DAS/trabalho-grafos
 cd trabalho-grafos
 
 # 2. Crie e ative o ambiente virtual
@@ -18,6 +22,17 @@ source venv/bin/activate  # No Windows: venv\Scripts\activate
 # 3. Instale as dependências
 pip install -r requirements.txt
 ```
+
+## Dashboard Web Interativo
+
+```bash
+python3 -m src.server
+# abre http://localhost:8000
+```
+
+Sobe um servidor Flask com:
+- Uma home listando as visualizações já geradas em `out/` (a `--viz`/`--parte2` da CLI já roda antes, então os arquivos já estão commitados no repo).
+- Um **explorador de grafo interativo** (`/grafo_interativo.html`): escolhe o dataset (Recife ou malha aérea dos EUA), o algoritmo (BFS, DFS, Dijkstra, Bellman-Ford), origem e destino, e ele calcula e desenha o caminho na hora — sem precisar rodar nada pela CLI.
 
 ## Uso da Interface de Linha de Comando (CLI)
 
@@ -116,13 +131,13 @@ python3 -m src.cli --parte2
 pytest tests/ -v
 ```
 
-**Status atual:** 46/46 testes passando
+**Status atual:** 42/42 testes passando
 
 **Detalhamento:**
-- `test_bfs.py` - 9 testes
-- `test_dfs.py` - 11 testes
+- `test_bfs.py` - 8 testes
+- `test_dfs.py` - 8 testes
 - `test_dijkstra.py` - 12 testes
-- `test_bellman_ford.py` - 14 testes
+- `test_bell_manford.py` - 14 testes
 
 ### Executar Testes Específicos
 
@@ -200,6 +215,14 @@ Na segunda etapa do projeto, utilizamos um dataset de voos dos Estados Unidos. O
 1.  **Tratamento de Dados:** Limpeza e separação dos dados em arquivos CSV otimizados, removendo informações irrelevantes.
 2.  **Modelagem:** Criação do grafo com aeroportos como vértices e rotas como arestas ponderadas pela distância.
 3.  **Análise de Performance:** Execução e benchmark dos algoritmos implementados.
+
+## Equipe
+
+Projeto em grupo para a disciplina de Teoria dos Grafos:
+- [Miguel Batista](https://github.com/MigueldsBatista)
+- [Rafael](https://github.com/raf7525)
+- [Tiago Gurgel](https://github.com/ticogafa)
+- [Vinícius Diniz](https://github.com/Vinicius-DAS) — servidor Flask e dashboard web interativo (`src/server.py`, `src/templates/index.html`, explorador de grafo com vis-network.js), integração de algoritmos na CLI
 
 ## Links 
 [Slides](https://docs.google.com/presentation/d/1EjbdolanhynPRMIbFp7eazDzbNyJEDP-6PewBcEHLJc/edit?usp=sharing)
