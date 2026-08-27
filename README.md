@@ -8,6 +8,8 @@ Este projeto implementa uma biblioteca de manipulação de grafos em Python, apl
 
 Além da biblioteca e da CLI, o projeto inclui um **dashboard web interativo** (Flask + [vis-network](https://visjs.github.io/vis-network/)) pra explorar os grafos e rodar os algoritmos ao vivo, sem linha de comando — veja [Dashboard Web](#dashboard-web-interativo) abaixo.
 
+**Demo ao vivo:** [trabalho-grafos.onrender.com](https://trabalho-grafos.onrender.com) (plano gratuito do Render — a primeira visita depois de um tempo sem acesso pode levar 30-60s pra acordar o servidor).
+
 ## Instalação
 
 ```bash
